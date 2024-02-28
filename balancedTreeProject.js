@@ -1,3 +1,4 @@
+import prettyPrint from "./prettyPrint.js";
 import mergeSort from "./mergeSort.js";
 
 const node = {
@@ -60,7 +61,6 @@ function createBalancedTree({
 function find({ tree = this, value, returnNode = false }) {
   // works almost as depth first search
   if (!tree) return false;
-  // console.dir(tree);
 
   if (tree.content === value) {
     if (returnNode) return tree;
@@ -245,10 +245,11 @@ function postOrder(callback = false, treeNode = this, elements = []) {
 }
 
 function height(treeNode = this) {
+  debugger;
   // works simmilar to breadth first search
   let children = [];
   // it stores children in array instead of pushing them into stack
-  let height = 0;
+  let height = 1;
   // height will be returned when we'll run out of nodes to iterate
   let queue = [treeNode];
 
@@ -276,12 +277,14 @@ function height(treeNode = this) {
 }
 
 function isBalanced(treeNode = this) {
+  // NOTE: unless you insert values directly into tree it probably will be balanced
   const [leftHeight, rightHeight] = [
-    treeNode.height(treeNode.left),
-    treeNode.height(treeNode.right),
+    treeNode.left.height(),
+    treeNode.right.height()
   ];
 
-  return leftHeight - rightHeight === 1 || leftHeight - rightHeight === -1;
+
+  return leftHeight - rightHeight === 1 || leftHeight - rightHeight === -1 || leftHeight === rightHeight;
 }
 
 function depth(treeNode = this, rootNode = this, level = 0) {
@@ -316,19 +319,3 @@ function rebalance(treeNode = this) {
   return balancedTree;
 }
 
-const myTree = tree.create([
-  8, 4, 13, 2, 6, 11, 16, 9
-]);
-
-// console.dir(myTree.find({ value: 5 }));
-
-// myTree.postOrder((node) => {
-//   console.dir(node.content);
-// });
-
-// myTree.deleteItem(5);
-
-// console.dir(myTree);
-
-console.dir(myTree.isBalanced());
-// console.dir(myTree);
