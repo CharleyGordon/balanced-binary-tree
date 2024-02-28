@@ -16,6 +16,7 @@ const node = {
       height,
       depth,
       isBalanced,
+      rebalance,
       left: false,
       right: false,
     };
@@ -285,7 +286,6 @@ function isBalanced(treeNode = this) {
 }
 
 function depth(treeNode = this, rootNode = this, level = 0) {
-  debugger;
   if (treeNode === rootNode) return level;
   if (!treeNode) return level;
 
@@ -301,16 +301,6 @@ function depth(treeNode = this, rootNode = this, level = 0) {
   return leftLevel || rightLevel;
 }
 
-function depthFirstSearch(treeNode) {
-  if (!treeNode) return false;
-
-  console.log(treeNode.content);
-
-  const { left, right } = treeNode;
-
-  depthFirstSearch(left);
-  depthFirstSearch(right);
-}
 
 function rebalance(treeNode = this) {
   // I've decided to return new value instead of tweaking current
@@ -328,7 +318,7 @@ function rebalance(treeNode = this) {
 }
 
 const myTree = tree.create([
-  7, 3, 12, 1, 6, 9, 13, 0, 2, 4, 8, 11, 15, 5, 10, 14,
+  8, 4, 13, 2, 6, 11, 16, 9
 ]);
 
 // console.dir(myTree.find({ value: 5 }));
@@ -341,5 +331,5 @@ const myTree = tree.create([
 
 // console.dir(myTree);
 
-console.dir(myTree.preOrder());
+console.dir(myTree.isBalanced());
 // console.dir(myTree);
