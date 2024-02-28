@@ -1,4 +1,3 @@
-import prettyPrint from "./prettyPrint.js";
 import mergeSort from "./mergeSort.js";
 
 const node = {
